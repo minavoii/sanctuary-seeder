@@ -1,0 +1,77 @@
+{
+    "seed": 32410,
+    "is_randomizer": false,
+    "is_bravery": false,
+    "is_relic": true,
+    "relics": {
+        "list": [
+            2333,
+            2164,
+            2152,
+            2327,
+            2200,
+            2146,
+            2254,
+            2194,
+            2321,
+            2212,
+            2308,
+            2218,
+            2140
+        ],
+        "area_chests": [
+            [
+                "MountainPath_North6",
+                1
+            ],
+            [
+                "BlueCave_South4",
+                4
+            ],
+            [
+                "StrongholdDungeon_North2",
+                17
+            ],
+            [
+                "AncientWoods_South1",
+                6
+            ],
+            [
+                "SnowyPeaks_East3",
+                8
+            ],
+            [
+                "SunPalace_West1",
+                5
+            ],
+            [
+                "HorizonBeach_Center3",
+                1
+            ],
+            [
+                "MagmaChamber_West1",
+                41
+            ],
+            [
+                "MysticalWorkshop_West3",
+                0
+            ],
+            [
+                "Underworld_Center2",
+                7
+            ],
+            [
+                "AbandonedTower_North7",
+                8
+            ],
+            [
+                "BlobBurg_East3",
+                1
+            ],
+            [
+                "ForgottenWorld_Waters2",
+                4
+            ]
+        ]
+    }
+}

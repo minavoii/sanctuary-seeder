@@ -1,0 +1,22 @@
+import { AboutSlint } from "std-widgets.slint";
+
+export component AboutTab {
+    in property <string> version: "1.0.0";
+    VerticalLayout {
+        alignment: center;
+        spacing: 1rem;
+        Text {
+            horizontal-alignment: center;
+            text: "Sanctuary Seeder v" + version + " by Minavoii\n";
+        }
+
+        Text {
+            horizontal-alignment: center;
+            text: "https://github.com/Minavoii/Sanctuary-Seeder";
+        }
+
+        AboutSlint {
+            height: 10rem;
+        }
+    }
+}

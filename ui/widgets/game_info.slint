@@ -1,0 +1,109 @@
+
+import { LineEdit, CheckBox, Button } from "std-widgets.slint";
+
+export component GameInfo {
+    in property <bool> find_seed;
+    in-out property <string> seed: 0;
+    in-out property <bool> is_randomizer: false;
+    in-out property <bool> is_bravery: false;
+    in-out property <bool> is_relic: false;
+    callback req_seed(string);
+    callback req_find(bool, bool, bool);
+    callback req_find_modes(bool, bool, bool);
+    HorizontalLayout {
+        alignment: center;
+        spacing: 3rem;
+        // Find seed
+        if (find_seed): HorizontalLayout {
+            spacing: 2rem;
+            HorizontalLayout {
+                width: 12rem;
+                Button {
+                    width: 7rem;
+                    primary: true;
+                    text: "Find seed";
+                    clicked => {
+                        req_find(is_randomizer, is_bravery, is_relic);
+                    }
+                }
+            }
+
+            // Game Modes
+        HorizontalLayout {
+                CheckBox {
+                    width: 12rem;
+                    text: "Randomizer";
+                    checked <=> is_randomizer;
+                    toggled => {
+                        req_find_modes(is_randomizer, is_bravery, is_relic);
+                    }
+                }
+
+                CheckBox {
+                    width: 10rem;
+                    text: "Bravery";
+                    checked <=> is_bravery;
+                    toggled => {
+                        req_find_modes(is_randomizer, is_bravery, is_relic);
+                    }
+                }
+
+                CheckBox {
+                    text: "Relics";
+                    checked <=> is_relic;
+                    toggled => {
+                        req_find_modes(is_randomizer, is_bravery, is_relic);
+                    }
+                }
+            }
+        }
+        // Input seed
+        if (!find_seed):
+        HorizontalLayout {
+            spacing: 2rem;
+            Text {
+                vertical-alignment: center;
+                width: 3rem;
+                text: "Seed: ";
+            }
+
+            LineEdit {
+                width: 7rem;
+                input-type: InputType.number;
+                text <=> seed;
+                edited(t) => {
+                    req_seed(t);
+                }
+            }
+
+            // Game Modes
+        HorizontalLayout {
+                CheckBox {
+                    width: 12rem;
+                    text: "Randomizer";
+                    checked <=> is_randomizer;
+                    toggled => {
+                        req_seed(seed);
+                    }
+                }
+
+                CheckBox {
+                    width: 10rem;
+                    text: "Bravery";
+                    checked <=> is_bravery;
+                    toggled => {
+                        req_seed(seed);
+                    }
+                }
+
+                CheckBox {
+                    text: "Relics";
+                    checked <=> is_relic;
+                    toggled => {
+                        req_seed(seed);
+                    }
+                }
+            }
+        }
+    }
+}

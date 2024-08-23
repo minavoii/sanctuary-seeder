@@ -1,0 +1,119 @@
+{
+    "seed": 779938,
+    "is_randomizer": false,
+    "is_bravery": true,
+    "is_relic": true,
+    "bravery_data": {
+        "shift_offset": 972,
+        "familiar": 2,
+        "swimming": 59,
+        "bex": 51,
+        "cryomancer": 84,
+        "cryomancer_required": 53,
+        "end_of_time": [
+            108,
+            76,
+            109
+        ],
+        "army": [
+            94,
+            40,
+            104,
+            79,
+            12,
+            38,
+            67
+        ],
+        "eggs": [
+            60,
+            16,
+            96,
+            5,
+            37,
+            47,
+            53,
+            66,
+            99,
+            81,
+            32,
+            91,
+            14
+        ],
+        "starters": [
+            2,
+            33,
+            4
+        ]
+    },
+    "relics": {
+        "list": [
+            2164,
+            2290,
+            2188,
+            2266,
+            2272,
+            2218,
+            2357,
+            2278,
+            2314,
+            2134,
+            2200,
+            2345,
+            2260
+        ],
+        "area_chests": [
+            [
+                "MountainPath_Center6",
+                6
+            ],
+            [
+                "BlueCave_WestWaters5",
+                0
+            ],
+            [
+                "StrongholdDungeon_Jail",
+                5
+            ],
+            [
+                "AncientWoods_DoorPuzzle",
+                15
+            ],
+            [
+                "SnowyPeaks_West2",
+                1
+            ],
+            [
+                "SunPalace_EastSewers2",
+                6
+            ],
+            [
+                "HorizonBeach_Labyrinth",
+                27
+            ],
+            [
+                "MagmaChamber_Center2",
+                9
+            ],
+            [
+                "MysticalWorkshop_Center7",
+                1
+            ],
+            [
+                "Underworld_WestCatacomb10",
+                0
+            ],
+            [
+                "AbandonedTower_Center12",
+                7
+            ],
+            [
+                "BlobBurg_South2",
+                0
+            ],
+            [
+                "ForgottenWorld_Caves12",
+                0
+            ]
+        ]
+    }
+}

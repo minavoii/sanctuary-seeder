@@ -1,0 +1,22 @@
+[
+  { "id": 0, "name": "None" },
+  { "id": 1, "name": "Aquatic" },
+  { "id": 2, "name": "Aerial" },
+  { "id": 3, "name": "Mechanical" },
+  { "id": 4, "name": "Nature" },
+  { "id": 5, "name": "Spirit" },
+  { "id": 6, "name": "Reptile" },
+  { "id": 7, "name": "Beast" },
+  { "id": 8, "name": "Dragon" },
+  { "id": 9, "name": "Occult" },
+  { "id": 10, "name": "Slime" },
+  { "id": 11, "name": "Insect" },
+  { "id": 12, "name": "Bird" },
+  { "id": 13, "name": "Fish" },
+  { "id": 14, "name": "Goblin" },
+  { "id": 15, "name": "Warrior" },
+  { "id": 16, "name": "Mage" },
+  { "id": 17, "name": "Worm" },
+  { "id": 18, "name": "Changeling" },
+  { "id": 19, "name": "Ancient" }
+]

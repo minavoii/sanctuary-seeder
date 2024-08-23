@@ -1,0 +1,14 @@
+[
+  { "name": "BreakWall", "exploreActions": [0, 1, 2, 3, 4, 5, 6, 7, 8] },
+  { "name": "Mount", "exploreActions": [9, 10, 11, 12, 13, 14, 15] },
+  { "name": "Flying", "exploreActions": [16, 17, 18, 19, 20, 21, 14] },
+  { "name": "ImprovedFlying", "exploreActions": [20, 21, 14, 22] },
+  { "name": "SecretVision", "exploreActions": [23] },
+  { "name": "Ignite", "exploreActions": [24, 25, 26] },
+  { "name": "Light", "exploreActions": [27, 28, 15] },
+  { "name": "Crush", "exploreActions": [2, 3, 29, 30] },
+  { "name": "BigRock", "exploreActions": [31] },
+  { "name": "Grappling", "exploreActions": [32] },
+  { "name": "BlobForm", "exploreActions": [33, 34] },
+  { "name": "Levitate", "exploreActions": [35] }
+]

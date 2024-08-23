@@ -1,0 +1,57 @@
+import { Button, ComboBox } from "std-widgets.slint";
+
+export component AreaSelector {
+    in-out property <int> area;
+    callback req_area(int);
+    HorizontalLayout {
+        spacing: 1rem;
+        Button {
+            height: 3rem;
+            width: 3rem;
+            text: "<";
+            clicked => {
+                if area > 0 {
+                    area -= 1;
+                    req_area(area);
+                }
+            }
+        }
+
+        ComboBox {
+            height: 3rem;
+            width: 15rem;
+            model: [
+                "Bravery Eggs",
+                "Mountain Path",
+                "Blue Caves",
+                "Stronghold Dungeon",
+                "Ancient Woods",
+                "Snowy Peaks",
+                "Sun Palace",
+                "Horizon Beach",
+                "Magma Chamber",
+                "Mystical Workshop",
+                "Underworld",
+                "Abandoned Tower",
+                "Blob Burg",
+                "Forgotten World",
+            ];
+            current-index <=> area;
+            selected => {
+                req_area(area);
+            }
+        }
+
+        Button {
+            height: 3rem;
+            width: 3rem;
+            text: ">";
+            clicked => {
+                if area < 13 {
+                    area += 1;
+                    req_area(area);
+                }
+            }
+        }
+    }
+}

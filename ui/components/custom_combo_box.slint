@@ -1,0 +1,36 @@
+import { StandardListView, Button } from "std-widgets.slint";
+
+export component CustomComboBox {
+    in-out property <int> current_index: 0;
+    in property <[StandardListViewItem]> model: [{ text: "" }];
+    min-width: 14rem;
+    selected := Button {
+        width: 100%;
+        text: model[current_index].text;
+        clicked => {
+            popup.show();
+        }
+    }
+
+    popup := PopupWindow {
+        width: parent.width;
+        // height: 20rem;
+        close-on-click: false;
+        Rectangle {
+            background: #F0F0F0;
+            border-radius: 0.5rem;
+            StandardListView {
+                min-height: model.length < 6 ? 3.4rem * model.length : 20rem;
+                max-height: 20rem;
+                model: model;
+                current-item <=> current_index;
+                item-pointer-event(row, event, point) => {
+                    if event.kind == PointerEventKind.up {
+                        popup.close();
+                        self.current-item = row;
+                    }
+                }
+            }
+        }
+    }
+}

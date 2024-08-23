@@ -1,0 +1,66 @@
+import { MonsterBox, MonsterDisplayInfo } from "../components/monster_box.slint";
+
+export component Area {
+    in property <image> champion_icon;
+    in property <image> egg_icon;
+    in property <image> egg_light_icon;
+    in property <image> egg_dark_icon;
+    in property <MonsterDisplayInfo> tanuki;
+    in property <MonsterDisplayInfo> monster1;
+    in property <MonsterDisplayInfo> monster2;
+    in property <MonsterDisplayInfo> monster3;
+    in property <MonsterDisplayInfo> monster4;
+    in property <MonsterDisplayInfo> monster5;
+    in property <MonsterDisplayInfo> monster6;
+    in property <MonsterDisplayInfo> monster7;
+    in property <MonsterDisplayInfo> monster8;
+    in property <MonsterDisplayInfo> monster9;
+    in property <MonsterDisplayInfo> monster10;
+    in property <MonsterDisplayInfo> monster11;
+    in property <MonsterDisplayInfo> monster12;
+    in property <MonsterDisplayInfo> monster13;
+    in property <MonsterDisplayInfo> monster14;
+    VerticalLayout {
+        spacing: 1rem;
+        HorizontalLayout {
+            spacing: 1rem;
+            for monster in [monster1, monster2, monster3, monster4, monster5, monster6, monster7]: MonsterBox {
+                monster: monster;
+                champion_icon: champion_icon;
+                egg_icon: egg_icon;
+                egg_light_icon: egg_light_icon;
+                egg_dark_icon: egg_dark_icon;
+            }
+        }
+
+        HorizontalLayout {
+            spacing: 1rem;
+            for monster in [monster8, monster9, monster10, monster11, monster12, monster13, monster14]: MonsterBox {
+                monster: monster;
+                champion_icon: champion_icon;
+                egg_icon: egg_icon;
+                egg_light_icon: egg_light_icon;
+                egg_dark_icon: egg_dark_icon;
+            }
+        }
+
+        VerticalLayout {
+            HorizontalLayout {
+                alignment: center;
+                padding-bottom: 0.5rem;
+                visible: tanuki.name != "";
+                Text {
+                    font-weight: 700;
+                    text: "Tanuki";
+                }
+            }
+
+            HorizontalLayout {
+                alignment: center;
+                MonsterBox {
+                    monster: tanuki;
+                }
+            }
+        }
+    }
+}

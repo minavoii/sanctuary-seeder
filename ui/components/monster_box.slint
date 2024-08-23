@@ -1,0 +1,109 @@
+import { VerticalBox } from "std-widgets.slint";
+
+export struct MonsterDisplayInfo {
+    name: string,
+    sprite: image,
+    replaces: image,
+    is_egg: bool,
+    is_champion: bool,
+    shift: int,
+}
+
+component ToolTipArea {
+    in property <string> text;
+    in property <image> sprite;
+    preferred-height: 100%;
+    preferred-width: 100%;
+    touch := TouchArea { }
+
+    Rectangle {
+        states [
+            visible when touch.has-hover: {
+                opacity: 0.9;
+                in {
+                    animate opacity {
+                        duration: 175ms;
+                        delay: 400ms;
+                    }
+                }
+            }
+        ]
+        x: touch.mouse-x + 1rem;
+        y: touch.mouse-y + 1rem;
+        height: tt_l.preferred-height;
+        width: tt_l.preferred-width;
+        opacity: 0;
+        background: lightyellow;
+        tt_l := HorizontalLayout {
+            padding: 2px;
+            Image {
+                source: sprite;
+            }
+        }
+    }
+}
+
+export component MonsterBox {
+    in property <MonsterDisplayInfo> monster;
+    in property <image> champion_icon;
+    in property <image> egg_icon;
+    in property <image> egg_light_icon;
+    in property <image> egg_dark_icon;
+    visible: monster.name != "";
+    Rectangle {
+        border-color: lightgray;
+        border-width: 2px;
+        VerticalLayout {
+            HorizontalLayout {
+                height: 20px;
+                width: 90px;
+                Rectangle {
+                    Text {
+                        horizontal-alignment: center;
+                        text: monster.name;
+                    }
+                }
+            }
+
+            HorizontalLayout {
+                height: 45px;
+                width: 90px;
+                Rectangle {
+                    // Monster sprite
+                Image {
+                        image-rendering: ImageRendering.pixelated;
+                        image-fit: ImageFit.preserve;
+                        source: monster.sprite;
+                        if monster.replaces.height != 0: ToolTipArea {
+                            sprite: monster.replaces;
+                        }
+                    }
+
+                    // Champion icon
+                Image {
+                        width: 55px + 14px;
+                        height: 40px + 14px;
+                        horizontal-alignment: left;
+                        vertical-alignment: top;
+                        visible: monster.is_champion;
+                        image-rendering: ImageRendering.pixelated;
+                        image-fit: ImageFit.preserve;
+                        source: champion_icon;
+                    }
+
+                    // Egg icon
+                Image {
+                        width: 55px + 16px;
+                        height: 45px + 13px;
+                        horizontal-alignment: right;
+                        vertical-alignment: bottom;
+                        visible: monster.is_egg;
+                        image-rendering: ImageRendering.pixelated;
+                        image-fit: ImageFit.preserve;
+                        source: monster.shift == 1 ? egg_light_icon : monster.shift == 2 ? egg_dark_icon : egg_icon;
+                    }
+                }
+            }
+        }
+    }
+}

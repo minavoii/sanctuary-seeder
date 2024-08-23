@@ -1,0 +1,313 @@
+import { Button, VerticalBox, HorizontalBox, TextEdit, CheckBox, LineEdit, ComboBox, TabWidget, AboutSlint, GroupBox, StandardButton, ProgressIndicator } from "std-widgets.slint";
+import { MonsterBox, MonsterDisplayInfo } from "components/monster_box.slint";
+import { RelicDisplayInfo } from "components/relic_display_info.slint";
+import { Area } from "widgets/area.slint";
+import { AreaSelector } from "widgets/area_selector.slint";
+import { GameInfo } from "widgets/game_info.slint";
+import { AreasTab } from "widgets/tabs/areas_tab.slint";
+import { BraveryTab } from "widgets/tabs/bravery_tab.slint";
+import { SeedFinderTab } from "widgets/tabs/seed_finder_tab.slint";
+import { AboutTab } from "widgets/tabs/about_tab.slint";
+
+export component ProgressDialog inherits Dialog {
+    in property <string> _title: "Sanctuary Seeder";
+    in property <string> message: "Error.";
+    out property <length> _width: 30rem;
+    out property <length> _height: 16rem;
+    in property <float> progress;
+    in property <int> progress_text;
+    callback cancel_clicked();
+    title: _title;
+    icon: @image-url("../res/icons/app/Krakaturtle_256.png");
+    width <=> _width;
+    height <=> _height;
+    always-on-top: true;
+    VerticalLayout {
+        spacing: 1.5rem;
+        padding: 1rem;
+        Text {
+            horizontal-alignment: center;
+            font-weight: 700;
+            wrap: TextWrap.word-wrap;
+            text: message;
+        }
+
+        Text {
+            horizontal-alignment: center;
+            text: progress_text + "%";
+        }
+
+        ProgressIndicator {
+            height: 2rem;
+            progress: progress;
+        }
+
+        StandardButton {
+            kind: cancel;
+            clicked => {
+                cancel_clicked();
+            }
+        }
+    }
+}
+
+export component QuestionDialog inherits Dialog {
+    in property <string> _title: "Sanctuary Seeder";
+    in property <string> message: "Error.";
+    out property <length> _width: 30rem;
+    out property <length> _height: 10rem;
+    callback yes_clicked();
+    callback no_clicked();
+    title: _title;
+    icon: @image-url("../res/icons/app/Krakaturtle_256.png");
+    width <=> _width;
+    height <=> _height;
+    always-on-top: true;
+    VerticalLayout {
+        spacing: 2rem;
+        padding: 1rem;
+        Text {
+            horizontal-alignment: center;
+            font-weight: 700;
+            wrap: TextWrap.word-wrap;
+            text: message;
+        }
+
+        HorizontalLayout {
+            StandardButton {
+                kind: yes;
+                clicked => {
+                    yes_clicked();
+                }
+            }
+
+            StandardButton {
+                kind: no;
+                clicked => {
+                    no_clicked();
+                }
+            }
+        }
+    }
+}
+
+export component MessageDialog inherits Dialog {
+    in property <string> _title: "Sanctuary Seeder";
+    in property <string> message: "Error.";
+    out property <length> _width: 30rem;
+    out property <length> _height: 12rem;
+    callback ok_clicked();
+    title: _title;
+    icon: @image-url("../res/icons/app/Krakaturtle_256.png");
+    width <=> _width;
+    height <=> _height;
+    always-on-top: true;
+    VerticalLayout {
+        spacing: 2rem;
+        padding: 1rem;
+        Text {
+            horizontal-alignment: center;
+            font-weight: 700;
+            wrap: TextWrap.word-wrap;
+            text: message;
+        }
+
+        StandardButton {
+            kind: ok;
+            clicked => {
+                ok_clicked();
+            }
+        }
+    }
+}
+
+export component AppWindow inherits Window {
+    in property <string> version;
+    in-out property <string> seed: 0;
+    in-out property <bool> is_randomizer: false;
+    in-out property <bool> is_bravery: false;
+    in-out property <bool> is_relic: false;
+    in-out property <bool> is_randomizer_finder: false;
+    in-out property <bool> is_bravery_finder: false;
+    in-out property <bool> is_relic_finder: false;
+    in-out property <int> area;
+    in-out property <int> tab;
+    in property <RelicDisplayInfo> relic;
+    in property <MonsterDisplayInfo> familiar;
+    in property <MonsterDisplayInfo> starter1;
+    in property <MonsterDisplayInfo> starter2;
+    in property <MonsterDisplayInfo> swimming;
+    in property <MonsterDisplayInfo> cryomancer_required;
+    in property <MonsterDisplayInfo> cryomancer;
+    in property <MonsterDisplayInfo> bex;
+    in property <MonsterDisplayInfo> tanuki;
+    in property <MonsterDisplayInfo> end_of_time1;
+    in property <MonsterDisplayInfo> end_of_time2;
+    in property <MonsterDisplayInfo> end_of_time3;
+    in property <MonsterDisplayInfo> army1;
+    in property <MonsterDisplayInfo> army2;
+    in property <MonsterDisplayInfo> army3;
+    in property <MonsterDisplayInfo> army4;
+    in property <MonsterDisplayInfo> army5;
+    in property <MonsterDisplayInfo> army6;
+    in property <MonsterDisplayInfo> army7;
+    in property <MonsterDisplayInfo> area_monster1;
+    in property <MonsterDisplayInfo> area_monster2;
+    in property <MonsterDisplayInfo> area_monster3;
+    in property <MonsterDisplayInfo> area_monster4;
+    in property <MonsterDisplayInfo> area_monster5;
+    in property <MonsterDisplayInfo> area_monster6;
+    in property <MonsterDisplayInfo> area_monster7;
+    in property <MonsterDisplayInfo> area_monster8;
+    in property <MonsterDisplayInfo> area_monster9;
+    in property <MonsterDisplayInfo> area_monster10;
+    in property <MonsterDisplayInfo> area_monster11;
+    in property <MonsterDisplayInfo> area_monster12;
+    in property <MonsterDisplayInfo> area_monster13;
+    in property <MonsterDisplayInfo> area_monster14;
+    in-out property <int> item1;
+    in-out property <int> item2;
+    in property <[StandardListViewItem]> values;
+    in property <[StandardListViewItem]> effects;
+    in property <[[StandardListViewItem]]> found_seeds;
+    in property <[[StandardListViewItem]]> conditions_display;
+    in property <bool> loading_seeds;
+    in property <image> champion_icon;
+    in property <image> egg_icon;
+    in property <image> egg_light_icon;
+    in property <image> egg_dark_icon;
+    callback req_seed(string);
+    callback req_area(int);
+    callback req_find(bool, bool, bool);
+    callback req_find_modes(bool, bool, bool);
+    callback req_add_condition(int, int);
+    callback req_remove_condition(int);
+    callback req_seed_result(int);
+    title: "Sanctuary Seeder";
+    icon: @image-url("../res/icons/app/Krakaturtle_256.png");
+    height: 38rem;
+    width: 62rem;
+    HorizontalLayout {
+        alignment: center;
+        TabWidget {
+            current-index <=> tab;
+            Tab {
+                title: "Areas";
+                AreasTab {
+                    width: 100%;
+                    height: 100%;
+                    seed <=> seed;
+                    is_randomizer <=> is_randomizer;
+                    is_bravery <=> is_bravery;
+                    is_relic <=> is_relic;
+                    area <=> area;
+                    relic: relic;
+                    tanuki: tanuki;
+                    area_monster1: area_monster1;
+                    area_monster2: area_monster2;
+                    area_monster3: area_monster3;
+                    area_monster4: area_monster4;
+                    area_monster5: area_monster5;
+                    area_monster6: area_monster6;
+                    area_monster7: area_monster7;
+                    area_monster8: area_monster8;
+                    area_monster9: area_monster9;
+                    area_monster10: area_monster10;
+                    area_monster11: area_monster11;
+                    area_monster12: area_monster12;
+                    area_monster13: area_monster13;
+                    area_monster14: area_monster14;
+                    champion_icon: champion_icon;
+                    egg_icon: egg_icon;
+                    egg_light_icon: egg_light_icon;
+                    egg_dark_icon: egg_dark_icon;
+                    req_seed(seed) => {
+                        req_seed(seed);
+                    }
+                    req_area(area) => {
+                        req_area(area);
+                    }
+                }
+            }
+
+            Tab {
+                title: "Bravery specific";
+                BraveryTab {
+                    width: 100%;
+                    height: 100%;
+                    seed <=> seed;
+                    is_randomizer <=> is_randomizer;
+                    is_bravery <=> is_bravery;
+                    is_relic <=> is_relic;
+                    familiar: familiar;
+                    starter1: starter1;
+                    starter2: starter2;
+                    swimming: swimming;
+                    cryomancer_required: cryomancer_required;
+                    cryomancer: cryomancer;
+                    bex: bex;
+                    tanuki: tanuki;
+                    end_of_time1: end_of_time1;
+                    end_of_time2: end_of_time2;
+                    end_of_time3: end_of_time3;
+                    army1: army1;
+                    army2: army2;
+                    army3: army3;
+                    army4: army4;
+                    army5: army5;
+                    army6: army6;
+                    army7: army7;
+                    egg_icon: egg_icon;
+                    egg_light_icon: egg_light_icon;
+                    egg_dark_icon: egg_dark_icon;
+                    req_seed(seed) => {
+                        req_seed(seed);
+                    }
+                }
+            }
+
+            Tab {
+                title: "Find seed";
+                SeedFinderTab {
+                    width: 100%;
+                    height: 100%;
+                    is_randomizer <=> is_randomizer_finder;
+                    is_bravery <=> is_bravery_finder;
+                    is_relic <=> is_relic_finder;
+                    item1 <=> item1;
+                    item2 <=> item2;
+                    values: values;
+                    effects: effects;
+                    found_seeds: found_seeds;
+                    conditions_display: conditions_display;
+                    loading_seeds: loading_seeds;
+                    req_seed(seed) => {
+                        req_seed(seed);
+                    }
+                    req_find(is_randomizer, is_bravery, is_relic) => {
+                        req_find(is_randomizer, is_bravery, is_relic);
+                    }
+                    req_find_modes(is_randomizer, is_bravery, is_relic) => {
+                        req_find_modes(is_randomizer, is_bravery, is_relic);
+                    }
+                    req_remove_condition(row) => {
+                        req_remove_condition(row);
+                    }
+                    req_add_condition(item1, item2) => {
+                        req_add_condition(item1, item2);
+                    }
+                    req_seed_result(row) => {
+                        req_seed_result(row);
+                    }
+                }
+            }
+
+            Tab {
+                title: "About";
+                AboutTab {
+                    version: version;
+                }
+            }
+        }
+    }
+}

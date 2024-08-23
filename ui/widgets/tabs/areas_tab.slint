@@ -1,0 +1,110 @@
+import { GameInfo } from "../game_info.slint";
+import { AreaSelector } from "../area_selector.slint";
+import { Area } from "../area.slint";
+import { RelicDisplayInfo } from "../../components/relic_display_info.slint";
+import { MonsterDisplayInfo } from "../../components/monster_box.slint";
+
+export component AreasTab {
+    in-out property <string> seed: 0;
+    in-out property <bool> is_randomizer: false;
+    in-out property <bool> is_bravery: false;
+    in-out property <bool> is_relic: false;
+    in-out property <int> area;
+    in property <RelicDisplayInfo> relic;
+    in property <MonsterDisplayInfo> tanuki;
+    in property <MonsterDisplayInfo> area_monster1;
+    in property <MonsterDisplayInfo> area_monster2;
+    in property <MonsterDisplayInfo> area_monster3;
+    in property <MonsterDisplayInfo> area_monster4;
+    in property <MonsterDisplayInfo> area_monster5;
+    in property <MonsterDisplayInfo> area_monster6;
+    in property <MonsterDisplayInfo> area_monster7;
+    in property <MonsterDisplayInfo> area_monster8;
+    in property <MonsterDisplayInfo> area_monster9;
+    in property <MonsterDisplayInfo> area_monster10;
+    in property <MonsterDisplayInfo> area_monster11;
+    in property <MonsterDisplayInfo> area_monster12;
+    in property <MonsterDisplayInfo> area_monster13;
+    in property <MonsterDisplayInfo> area_monster14;
+    in property <image> champion_icon;
+    in property <image> egg_icon;
+    in property <image> egg_light_icon;
+    in property <image> egg_dark_icon;
+    callback req_seed(string);
+    callback req_area(int);
+    VerticalLayout {
+        padding: 1.5rem;
+        GameInfo {
+            seed <=> seed;
+            is_randomizer <=> is_randomizer;
+            is_bravery <=> is_bravery;
+            is_relic <=> is_relic;
+            req_seed => {
+                req_seed(seed);
+            }
+        }
+
+        // Area selector
+        HorizontalLayout {
+            alignment: center;
+            padding-top: 2rem;
+            AreaSelector {
+                area <=> area;
+                req_area => {
+                    req_area(area);
+                }
+            }
+        }
+
+        // Area
+        HorizontalLayout {
+            alignment: center;
+            padding-top: 2rem;
+            Area {
+                tanuki: tanuki;
+                monster1: area_monster1;
+                monster2: area_monster2;
+                monster3: area_monster3;
+                monster4: area_monster4;
+                monster5: area_monster5;
+                monster6: area_monster6;
+                monster7: area_monster7;
+                monster8: area_monster8;
+                monster9: area_monster9;
+                monster10: area_monster10;
+                monster11: area_monster11;
+                monster12: area_monster12;
+                monster13: area_monster13;
+                monster14: area_monster14;
+                champion_icon: champion_icon;
+                egg_icon: egg_icon;
+                egg_light_icon: egg_light_icon;
+                egg_dark_icon: egg_dark_icon;
+            }
+        }
+
+        // Relics
+        VerticalLayout {
+            HorizontalLayout {
+                alignment: center;
+                spacing: 0.5rem;
+                padding-top: 1rem;
+                Rectangle {
+                    height: 30px;
+                    width: 30px;
+                    Image {
+                        image-rendering: ImageRendering.pixelated;
+                        image-fit: ImageFit.preserve;
+                        source: relic.sprite;
+                    }
+                }
+
+                Rectangle {
+                    Text {
+                        text: relic.name;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,101 @@
+import { StandardListView, StandardTableView, Button, Spinner } from "std-widgets.slint";
+import { GameInfo } from "../game_info.slint";
+import { CustomComboBox } from "../../components/custom_combo_box.slint";
+
+export component SeedFinderTab {
+    in-out property <bool> is_randomizer: false;
+    in-out property <bool> is_bravery: false;
+    in-out property <bool> is_relic: false;
+    in-out property <int> item1;
+    in-out property <int> item2;
+    in property <[StandardListViewItem]> values;
+    in property <[StandardListViewItem]> effects;
+    in-out property <[[StandardListViewItem]]> found_seeds;
+    in property <[[StandardListViewItem]]> conditions_display;
+    in property <bool> loading_seeds;
+    callback req_seed(string);
+    callback req_find(bool, bool, bool);
+    callback req_find_modes(bool, bool, bool);
+    callback req_add_condition(int, int);
+    callback req_remove_condition(int);
+    callback req_seed_result(int);
+    VerticalLayout {
+        padding: 1.5rem;
+        spacing: 1rem;
+        GameInfo {
+            find_seed: true;
+            is_randomizer <=> is_randomizer;
+            is_bravery <=> is_bravery;
+            is_relic <=> is_relic;
+            req_find(is_randomizer, is_bravery, is_relic) => {
+                req_find(is_randomizer, is_bravery, is_relic);
+            }
+            req_find_modes(is_randomizer, is_bravery, is_relic) => {
+                req_find_modes(is_randomizer, is_bravery, is_relic);
+            }
+        }
+
+        HorizontalLayout {
+            alignment: center;
+            spacing: 2rem;
+            padding-top: 2rem;
+            height: 5rem;
+            CustomComboBox {
+                width: 14rem;
+                current_index <=> item1;
+                model: values;
+            }
+
+            CustomComboBox {
+                width: 19rem;
+                current_index <=> item2;
+                model: effects;
+            }
+
+            Button {
+                text: "Add";
+                clicked => {
+                    req_add_condition(item1, item2);
+                }
+            }
+        }
+
+        HorizontalLayout {
+            alignment: center;
+            spacing: 5rem;
+            padding-top: 1rem;
+            Rectangle {
+                width: 8rem;
+                Spinner {
+                    visible: loading_seeds;
+                    indeterminate: true;
+                    z: 1;
+                }
+
+                StandardTableView {
+                    width: 8rem;
+                    height: 21rem;
+                    columns: [{ title: "Seeds", width: 8rem }];
+                    rows: found_seeds;
+                    row-pointer-event(row, event, point) => {
+                        if event.kind == PointerEventKind.up {
+                            req_seed_result(row);
+                        }
+                    }
+                }
+            }
+
+            StandardTableView {
+                width: 30rem;
+                height: 21rem;
+                columns: [{ title: "Conditions", width: 27rem }, { title: "", width: 3rem }];
+                rows: conditions_display;
+                row-pointer-event(row, event, point) => {
+                    if event.kind == PointerEventKind.up && point.x >= 326px {
+                        req_remove_condition(row);
+                    }
+                }
+            }
+        }
+    }
+}

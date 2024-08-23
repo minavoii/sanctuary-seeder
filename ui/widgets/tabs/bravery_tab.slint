@@ -1,0 +1,182 @@
+import { GameInfo } from "../game_info.slint";
+import { MonsterBox, MonsterDisplayInfo } from "../../components/monster_box.slint";
+
+export component BraveryTab {
+    in-out property <string> seed: 0;
+    in-out property <bool> is_randomizer: false;
+    in-out property <bool> is_bravery: false;
+    in-out property <bool> is_relic: false;
+    in property <MonsterDisplayInfo> familiar;
+    in property <MonsterDisplayInfo> starter1;
+    in property <MonsterDisplayInfo> starter2;
+    in property <MonsterDisplayInfo> swimming;
+    in property <MonsterDisplayInfo> cryomancer_required;
+    in property <MonsterDisplayInfo> cryomancer;
+    in property <MonsterDisplayInfo> bex;
+    in property <MonsterDisplayInfo> tanuki;
+    in property <MonsterDisplayInfo> end_of_time1;
+    in property <MonsterDisplayInfo> end_of_time2;
+    in property <MonsterDisplayInfo> end_of_time3;
+    in property <MonsterDisplayInfo> army1;
+    in property <MonsterDisplayInfo> army2;
+    in property <MonsterDisplayInfo> army3;
+    in property <MonsterDisplayInfo> army4;
+    in property <MonsterDisplayInfo> army5;
+    in property <MonsterDisplayInfo> army6;
+    in property <MonsterDisplayInfo> army7;
+    in property <image> egg_icon;
+    in property <image> egg_light_icon;
+    in property <image> egg_dark_icon;
+    callback req_seed(string);
+    VerticalLayout {
+        padding: 1.5rem;
+        spacing: 1rem;
+        GameInfo {
+            seed <=> seed;
+            is_randomizer <=> is_randomizer;
+            is_bravery <=> is_bravery;
+            is_relic <=> is_relic;
+            req_seed => {
+                req_seed(seed);
+            }
+        }
+
+        HorizontalLayout {
+            alignment: center;
+            spacing: 3rem;
+            padding-top: 2rem;
+            // Starters
+        VerticalLayout {
+                Text {
+                    height: 3rem;
+                    vertical-alignment: center;
+                    horizontal-alignment: center;
+                    font-weight: 700;
+                    text: "Starters";
+                }
+
+                HorizontalLayout {
+                    spacing: 1rem;
+                    for monster in [familiar, starter1, starter2]: MonsterBox {
+                        monster: monster;
+                    }
+                }
+            }
+
+            // Cryomancer
+        HorizontalLayout {
+                VerticalLayout {
+                    Text {
+                        height: 3rem;
+                        vertical-alignment: center;
+                        horizontal-alignment: center;
+                        font-weight: 700;
+                        text: "Cryomancer";
+                    }
+
+                    HorizontalLayout {
+                        MonsterBox {
+                            monster: cryomancer_required;
+                        }
+
+                        Text {
+                            width: 2rem;
+                            vertical-alignment: center;
+                            horizontal-alignment: center;
+                            text: "->";
+                        }
+
+                        MonsterBox {
+                            monster: cryomancer;
+                        }
+                    }
+                }
+            }
+
+            // Bex
+        HorizontalLayout {
+                VerticalLayout {
+                    Text {
+                        height: 3rem;
+                        vertical-alignment: center;
+                        horizontal-alignment: center;
+                        font-weight: 700;
+                        text: "Bex";
+                    }
+
+                    HorizontalLayout {
+                        MonsterBox {
+                            monster: bex;
+                        }
+                    }
+                }
+            }
+        }
+
+        HorizontalLayout {
+            alignment: center;
+            spacing: 3rem;
+            // Eternity's End
+        VerticalLayout {
+                Text {
+                    height: 3rem;
+                    vertical-alignment: center;
+                    horizontal-alignment: center;
+                    font-weight: 700;
+                    text: "Eternity's End";
+                }
+
+                HorizontalLayout {
+                    spacing: 1rem;
+                    for monster in [end_of_time1, end_of_time2, end_of_time3]: MonsterBox {
+                        monster: monster;
+                    }
+                }
+            }
+
+            HorizontalLayout {
+                width: 180px + 2rem;
+            }
+
+            // Swimming
+        VerticalLayout {
+                Text {
+                    height: 3rem;
+                    vertical-alignment: center;
+                    horizontal-alignment: center;
+                    font-weight: 700;
+                    text: "Swimming";
+                }
+
+                HorizontalLayout {
+                    MonsterBox {
+                        monster: swimming;
+                    }
+                }
+            }
+        }
+
+        HorizontalLayout {
+            // Monster Army
+        VerticalLayout {
+                Text {
+                    height: 3rem;
+                    vertical-alignment: center;
+                    horizontal-alignment: center;
+                    font-weight: 700;
+                    text: "Monster Army";
+                }
+
+                HorizontalLayout {
+                    spacing: 1rem;
+                    for monster in [army1, army2, army3, army4, army5, army6, army7]: MonsterBox {
+                        monster: monster;
+                        egg_icon: egg_icon;
+                        egg_light_icon: egg_light_icon;
+                        egg_dark_icon: egg_dark_icon;
+                    }
+                }
+            }
+        }
+    }
+}
