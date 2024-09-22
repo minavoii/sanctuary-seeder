@@ -1,6 +1,6 @@
 # Sanctuary Seeder
 
-[<img alt="github" src="https://img.shields.io/badge/github-minavoii/unity--random-8da0cb?labelColor=555555&logo=github" height="20">](https://github.com/minavoii/sanctuary-seeder)
+[<img alt="github" src="https://img.shields.io/badge/github-minavoii/sanctuary--seeder-8da0cb?labelColor=555555&logo=github" height="20">](https://github.com/minavoii/sanctuary-seeder)
 
 A seed finder and checker for [Monster Sanctuary](https://store.steampowered.com/app/814370/Monster_Sanctuary/).
 
