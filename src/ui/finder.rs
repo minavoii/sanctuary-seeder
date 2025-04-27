@@ -118,11 +118,30 @@ fn generate_db(
             dialog.show().unwrap();
 
             thread::spawn(move || {
-                let res = db::generate(dialog_weak, parent_position, parent_size, stop_signal);
+                let res = db::generate(
+                    dialog_weak.clone(),
+                    parent_position,
+                    parent_size,
+                    stop_signal.clone(),
+                );
 
-                if let Err(_) = res {
+                if let Err(err) = res {
                     fs::remove_file("./seeds.db").ok();
                     fs::remove_file("./seeds.db-journal").ok();
+
+                    // Missing permissions?
+                    if let Some(rusqlite::ErrorCode::CannotOpen) = err.sqlite_error_code() {
+                        dialog_weak
+                            .upgrade_in_event_loop(move |dialog| {
+                                dialog.hide().unwrap();
+                                dialog::show_message(
+                                    format!("Error: {}", err),
+                                    parent_position,
+                                    parent_size,
+                                );
+                            })
+                            .unwrap();
+                    }
                 }
             });
         })

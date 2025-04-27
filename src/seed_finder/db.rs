@@ -137,7 +137,6 @@ pub fn generate(
         tx.commit()?;
 
         if stop.load(Ordering::Relaxed) {
-            // return Ok(());
             return Err(Error::ExecuteReturnedResults);
         }
 
