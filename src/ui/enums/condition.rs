@@ -245,7 +245,7 @@ impl Condition {
                     GAME_DATA.areas[*area as usize]
                         .wild_monsters
                         .iter()
-                        .map(|x| format!("M{x}"))
+                        .map(|x| format!("M{}", x - 4))
                         .collect::<Vec<String>>()
                         .join(",")
                 )
