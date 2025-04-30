@@ -6,6 +6,7 @@ use std::{
 use slint::{ComponentHandle, Model, ModelRc, SharedString, StandardListViewItem, VecModel, Weak};
 
 use crate::{
+    data,
     structs::game::Game,
     ui::{
         condition,
@@ -157,5 +158,11 @@ pub fn seed(
                 area_id,
             )
         });
+    }
+}
+
+pub fn open_repository() -> impl FnMut() {
+    move || {
+        open::that(data::REPO_LINK).ok();
     }
 }

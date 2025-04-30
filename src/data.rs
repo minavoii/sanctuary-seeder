@@ -3,6 +3,7 @@ use std::sync::LazyLock;
 use crate::{structs::game_data::GameData, ui::display::Display};
 
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
+pub const REPO_LINK: &str = "https://www.github.com/Minavoii/Sanctuary-Seeder";
 
 pub static GAME_DATA: LazyLock<GameData> = LazyLock::new(|| GameData::new());
 pub static DISPLAY: LazyLock<Display> = LazyLock::new(|| Display::new(&GAME_DATA));
