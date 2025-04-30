@@ -49,6 +49,8 @@ fn main() -> Result<(), slint::PlatformError> {
         is_max_seed.clone(),
     ));
 
+    ui.on_req_open_repository(request::open_repository());
+
     ui.run()
 }
 

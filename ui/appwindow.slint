@@ -183,6 +183,7 @@ export component AppWindow inherits Window {
     callback req_add_condition(int, int);
     callback req_remove_condition(int);
     callback req_seed_result(int);
+    callback req_open_repository();
     title: "Sanctuary Seeder";
     icon: @image-url("../res/icons/app/Krakaturtle_256.png");
     height: 38rem;
@@ -306,6 +307,9 @@ export component AppWindow inherits Window {
                 title: "About";
                 AboutTab {
                     version: version;
+                    open_repository() => {
+                        req_open_repository();
+                    }
                 }
             }
         }

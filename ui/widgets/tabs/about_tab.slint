@@ -1,22 +1,38 @@
-import { AboutSlint } from "std-widgets.slint";
+import { AboutSlint, VerticalBox } from "std-widgets.slint";
 
 export component AboutTab {
     in property <string> version: "1.0.0";
+    callback open_repository();
     VerticalLayout {
         alignment: center;
         spacing: 1rem;
         Text {
             horizontal-alignment: center;
             text: "Sanctuary Seeder v" + version + " by Minavoii\n";
+            font-size: 1.5rem;
+            font-weight: 400;
         }
 
-        Text {
-            horizontal-alignment: center;
-            text: "https://github.com/Minavoii/Sanctuary-Seeder";
+        TouchArea {
+            Text {
+                horizontal-alignment: center;
+                text: "https://github.com/Minavoii/Sanctuary-Seeder";
+                font-size: 1.2rem;
+                // font-weight: 400;
+                color: #0000EE;
+            }
+            clicked => {
+                open_repository();
+            }
         }
 
-        AboutSlint {
-            height: 10rem;
+        VerticalBox {
+            padding-top: 3.5rem;
+
+            AboutSlint {
+                height: 10rem;
+            }
         }
+        
     }
 }
