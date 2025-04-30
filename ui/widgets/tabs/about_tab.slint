@@ -1,7 +1,7 @@
 import { AboutSlint, VerticalBox } from "std-widgets.slint";
 
 export component AboutTab {
-    in property <string> version: "1.0.0";
+    in property <string> version: "1.0.1";
     callback open_repository();
     VerticalLayout {
         alignment: center;
@@ -18,7 +18,6 @@ export component AboutTab {
                 horizontal-alignment: center;
                 text: "https://github.com/Minavoii/Sanctuary-Seeder";
                 font-size: 1.2rem;
-                // font-weight: 400;
                 color: #0000EE;
             }
             clicked => {
