@@ -1,6 +1,6 @@
 #define AppName "Sanctuary Seeder"
 #define AppVersion "1.0.1"
-#define AppCopyright "� 2024 Minavoii"
+#define AppCopyright "© 2024 Minavoii"
 #define Icon "../icons/app/Krakaturtle.ico"
 
 [Setup]
