@@ -1,4 +1,4 @@
-import { AboutSlint, VerticalBox } from "std-widgets.slint";
+import { AboutSlint, VerticalBox, Palette } from "std-widgets.slint";
 
 export component AboutTab {
     in property <string> version: "1.0.1";
@@ -18,8 +18,9 @@ export component AboutTab {
                 horizontal-alignment: center;
                 text: "https://github.com/Minavoii/Sanctuary-Seeder";
                 font-size: 1.2rem;
-                color: #0000EE;
+                color: Palette.accent-background;
             }
+
             clicked => {
                 open_repository();
             }
@@ -27,11 +28,9 @@ export component AboutTab {
 
         VerticalBox {
             padding-top: 3.5rem;
-
             AboutSlint {
                 height: 10rem;
             }
         }
-        
     }
 }

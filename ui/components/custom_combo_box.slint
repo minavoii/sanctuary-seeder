@@ -1,4 +1,4 @@
-import { StandardListView, Button } from "std-widgets.slint";
+import { StandardListView, Button, Palette } from "std-widgets.slint";
 
 export component CustomComboBox {
     in-out property <int> current_index: 0;
@@ -17,7 +17,7 @@ export component CustomComboBox {
         // height: 20rem;
         close-policy: no-auto-close;
         Rectangle {
-            background: #F0F0F0;
+            background: Palette.background;
             border-radius: 0.5rem;
             StandardListView {
                 min-height: model.length < 6 ? 3.4rem * model.length : 20rem;
